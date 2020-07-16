@@ -32,7 +32,8 @@ The following measures are implemented:
 - Word Information Preserved (WIP)
 """
 
-import Levenshtein
+#import Levenshtein
+import edit_distance
 
 from typing import List, Mapping, Tuple, Union
 
@@ -266,7 +267,8 @@ def _get_operation_counts(
     :return: a tuple of #hits, #substitutions, #deletions, #insertions
     """
 
-    editops = Levenshtein.editops(source_string, destination_string)
+    #editops = Levenshtein.editops(source_string, destination_string)
+    editops = edit_distance.SequenceMatcher(a=source_string, b=destination_string).get_opcodes()
 
     substitutions = sum(1 if op[0] == "replace" else 0 for op in editops)
     deletions = sum(1 if op[0] == "delete" else 0 for op in editops)

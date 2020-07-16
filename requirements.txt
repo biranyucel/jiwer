@@ -1,1 +1,1 @@
-python-Levenshtein==0.12.0
+edit-distance==1.0.4
